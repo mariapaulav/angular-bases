@@ -8,13 +8,14 @@ import { Character } from '../../interfaces/character.interface';
 })
 export class ListComponent implements OnInit {
   @Input() characterList: Character[] = [];
-  @Output() public onDeleteCharacter: EventEmitter<number> = new EventEmitter();
+  @Output() public onDeleteCharacter: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {}
 
-  onDelete(index: number): void {
-    this.onDeleteCharacter.emit(index);
+  onDelete(id: string): void {
+    if (!id) return;
+    this.onDeleteCharacter.emit(id);
   }
 }
